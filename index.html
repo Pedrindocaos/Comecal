@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Terminal Paranormal</title>
+  <style>
+    body {
+      background: black;
+      color: #32ff00;
+      font-family: 'Courier New', monospace;
+      padding: 2rem;
+    }
+    input, button {
+      font-family: inherit;
+      background: black;
+      color: #32ff00;
+      border: 1px solid #32ff00;
+      padding: 0.5rem;
+    }
+    #response {
+      margin-top: 1rem;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Terminal Paranormal</h1>
+  <p>Digite uma palavra e pressione Enter:</p>
+  <form id="terminalForm">
+    >> <input type="text" id="inputWord" autocomplete="off" />
+    <button type="submit">ENVIAR</button>
+  </form>
+  <div id="response"></div>
+
+  <script>
+    const responseEl = document.getElementById("response");
+    const form = document.getElementById("terminalForm");
+    const input = document.getElementById("inputWord");
+
+    const comandos = {
+      "energia": "Você sente um calor subir do chão... algo foi ativado.",
+      "ritual": "O círculo está quase completo. Falta o sangue.",
+      "yan bellini": "O Profetizado caminha entre nós.",
+    };
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const palavra = input.value.toLowerCase().trim();
+      if (palavra in comandos) {
+        responseEl.textContent = comandos[palavra];
+      } else {
+        responseEl.textContent = `Nada acontece com a palavra "${palavra}"... ou por enquanto.`;
+      }
+      input.value = "";
+    });
+  </script>
+</body>
+</html>
